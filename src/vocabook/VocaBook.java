@@ -55,6 +55,13 @@ public class VocaBook {
         return String.join("\n", toSortedStrings());
     }
 
+    public void removeWord(String english) {
+        if (!voca.containsKey(english)) {
+            throw new IllegalArgumentException(english + "는 단어장에 없습니다.");
+        }
+        voca.remove(english);
+    }
+
     private List<String> toSortedStrings() {
         List<String> englishes = new ArrayList<>(voca.keySet());
         Collections.sort(englishes);

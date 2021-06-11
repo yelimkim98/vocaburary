@@ -13,6 +13,7 @@ public class Main {
     private static final int SEARCH = 1;
     private static final int PRINT_ALL = 2;
     private static final int ADD_NEW_WORD = 3;
+    private static final int REMOVE_WORD = 4;
     private static final Scanner scanner = new Scanner(System.in);
     private static final String VOCA_FILE_NAME = "voca1800.txt";
 
@@ -29,6 +30,7 @@ public class Main {
                     + " 1 : 영어 단어뜻 검색\n"
                     + " 2 : 전체 단어 보기\n"
                     + " 3 : 영어 단어 추가\n"
+                    + " 4 : 영어 단어 삭제\n"
                     + " 0 : 종료\n");
                 System.out.print(">> ");
                 command = Integer.parseInt(scanner.nextLine());
@@ -40,15 +42,18 @@ public class Main {
         }
     }
 
-    private static void execute(int commend) {
-        if (commend == SEARCH) {
+    private static void execute(int command) {
+        if (command == SEARCH) {
             search();
         }
-        else if (commend == PRINT_ALL) {
+        else if (command == PRINT_ALL) {
             printAll();
         }
-        else if (commend == ADD_NEW_WORD) {
+        else if (command == ADD_NEW_WORD) {
             addNewWord();
+        }
+        else if (command == REMOVE_WORD) {
+            removeWord();
         }
         else {
             throw new IllegalArgumentException("존재하지 않는 명령입니다.");
@@ -86,5 +91,12 @@ public class Main {
 
         vocaBook.addWord(english, meanings);
         System.out.println("단어가 추가되었습니다.");
+    }
+
+    private static void removeWord() {
+        System.out.println("삭제할 단어를 입력하세요.");
+        System.out.print(">> ");
+        String input = scanner.nextLine();
+        vocaBook.removeWord(input);
     }
 }
