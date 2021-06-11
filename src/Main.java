@@ -14,6 +14,7 @@ public class Main {
     private static final int PRINT_ALL = 2;
     private static final int ADD_NEW_WORD = 3;
     private static final int REMOVE_WORD = 4;
+    private static final int QUIT = 0;
     private static final Scanner scanner = new Scanner(System.in);
     private static final String VOCA_FILE_NAME = "voca1800.txt";
 
@@ -36,7 +37,7 @@ public class Main {
                 command = Integer.parseInt(scanner.nextLine());
                 execute(command);
                 System.out.println();
-            } while (command != 0);
+            } while (command != QUIT);
         } catch (IOException | IllegalArgumentException e) {
             System.out.println(e.getMessage());
         }
@@ -45,19 +46,25 @@ public class Main {
     private static void execute(int command) {
         if (command == SEARCH) {
             search();
+            return;
         }
-        else if (command == PRINT_ALL) {
+        if (command == PRINT_ALL) {
             printAll();
+            return;
         }
-        else if (command == ADD_NEW_WORD) {
+        if (command == ADD_NEW_WORD) {
             addNewWord();
+            return;
         }
-        else if (command == REMOVE_WORD) {
+        if (command == REMOVE_WORD) {
             removeWord();
+            return;
         }
-        else {
-            throw new IllegalArgumentException("존재하지 않는 명령입니다.");
+        if (command == QUIT) {
+            printQuitMessage();
+            return;
         }
+        throw new IllegalArgumentException("존재하지 않는 명령입니다.");
     }
 
     private static void search() {
@@ -98,5 +105,9 @@ public class Main {
         System.out.print(">> ");
         String input = scanner.nextLine();
         vocaBook.removeWord(input);
+    }
+
+    private static void printQuitMessage() {
+        System.out.println("종료합니다.");
     }
 }
