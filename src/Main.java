@@ -14,7 +14,7 @@ public class Main {
     private static final int PRINT_ALL = 2;
     private static final int ADD_NEW_WORD = 3;
     private static final Scanner scanner = new Scanner(System.in);
-    private static final String VOCA_FILE_NAME = "C:/Users/LG_PC/Desktop/정현 자바과제2 (1)/voca1800.txt";
+    private static final String VOCA_FILE_NAME = "voca1800.txt";
 
     private static VocaBook vocaBook;
 
