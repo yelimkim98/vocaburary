@@ -1,13 +1,15 @@
 import java.io.IOException;
 import java.util.Scanner;
+import vocabook.HashMapPutDuplicateStrategy;
 import vocabook.Koreans;
 import vocabook.VocaBook;
 import vocabook.VocaBookFactory;
-import vocabook.HashMapPutDuplicateStrategy;
 
 public class Main {
 
     private static final String VOCA_FILE_NAME = "C:/Users/LG_PC/Desktop/정현 자바과제2 (1)/voca1800.txt";
+    private static final int SEARCH = 1;
+    private static final int PRINT_ALL = 2;
     private static final Scanner scanner = new Scanner(System.in);
 
     private static VocaBook vocaBook;
@@ -18,7 +20,8 @@ public class Main {
                 HashMapPutDuplicateStrategy.USE_ORIGINAL);
 
             System.out.println("원하는 기능을 선택하세요.\n"
-                + " 1 : 영어 단어뜻 검색");
+                + " 1 : 영어 단어뜻 검색\n"
+                + " 2 : 전체 단어 보기");
             System.out.print(">> ");
             int input = Integer.parseInt(scanner.nextLine());
 
@@ -29,8 +32,11 @@ public class Main {
     }
 
     private static void execute(int commend) {
-        if (commend == 1) {
+        if (commend == SEARCH) {
             search();
+        }
+        else if (commend == PRINT_ALL) {
+            printAll();
         }
     }
 
@@ -44,5 +50,9 @@ public class Main {
         } catch (IllegalArgumentException e) {
             System.out.println(e.getMessage());
         }
+    }
+
+    private static void printAll() {
+        System.out.println(vocaBook.toStringAll());
     }
 }

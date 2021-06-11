@@ -4,6 +4,8 @@ import static vocabook.HashMapPutDuplicateStrategy.CHANGE;
 import static vocabook.HashMapPutDuplicateStrategy.ERROR;
 import static vocabook.HashMapPutDuplicateStrategy.USE_ORIGINAL;
 
+import java.util.ArrayList;
+import java.util.Collections;
 import java.util.HashMap;
 import java.util.List;
 
@@ -47,5 +49,21 @@ public class VocaBook {
             return voca.get(english);
         }
         throw new IllegalArgumentException(english + "는 단어장에 없습니다.");
+    }
+
+    public String toStringAll() {
+        return String.join("\n", toSortedStrings());
+    }
+
+    private List<String> toSortedStrings() {
+        List<String> englishes = new ArrayList<>(voca.keySet());
+        Collections.sort(englishes);
+
+        List<String> ret = new ArrayList<>();
+
+        for (String english : englishes) {
+            ret.add(english + " : " + voca.get(english).toString());
+        }
+        return Collections.unmodifiableList(ret);
     }
 }
